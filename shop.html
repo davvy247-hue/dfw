@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>REVES Shop</title>
+<style>
+  /* Reset */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000000;
+    color: #ffffff;
+  }
+  /* Navbar */
+  nav {
+    background: #222;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color:  #f44336;
+    letter-spacing: 2px;
+  }
+  nav .menu {
+    display: flex;
+    gap: 1.5rem;
+  }
+  nav .menu a {
+    color: #ddd;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  nav .menu a:hover {
+    color: #f44336;
+  }
+  /* Responsive nav toggle button */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    background: #f44336;
+    height: 3px;
+    width: 25px;
+    margin-bottom: 4px;
+    border-radius: 2px;
+  }
+  @media (max-width: 768px) {
+    nav .menu {
+      display: none;
+
+     flex-direction: column;
+      background: #222;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    nav .menu.active {
+      display: flex;
+    }
+    .nav-toggle {
+      display: flex;
+    }
+  }
+  /* Product grid */
+  main.product-grid {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  .product-card {
+    background: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 8px rgba(244,67,54,0.3);
+    display: flex;
+    flex-direction: column;
+  }
+  .product-image {
+    height: 180px;
+    background-position: center;
+    background-size: cover;
+  }
+  .product-info {
+    padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .product-title {
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+  .product-price {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #f44336;
+  }
+  .product-price del {
+    color: #777;
+    margin-left: 0.5rem;
+    font-weight: normal;
+  }
+  .discount {
+    background: #f44336;
+    color: white;
+    font-size: 0.8rem;
+
+    padding: 0.15rem 0.4rem;
+    border-radius: 3px;
+    margin-left: 0.5rem;
+  }
+  .button {
+    background: #f44336;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 0;
+    border-radius: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .button:hover {
+    background: #d32f2f;
+  }
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1rem;
+    color: #777;
+    background: #222;
+    margin-top: 3rem;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">REVES</div>
+  <div class="nav-toggle" id="navToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="menu" id="navMenu">
+    <a href="home.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart</a>
+  </div>
+</nav> 
+
+<main class="product-grid">
+  <!-- Product cards (12) -->
+  <div class="product-card">
+    <div class="product-image" style="background-image: url('download\ \(1\).jpg');"></div>
+    <div class="product-info">
+      <div class="product-title"> REVES SKULL HATS ❗🦅</div>
+      <div class="product-price">₦9,500</div>
+      <button class="button" onclick="addToCart('SACRED SCD SKULL HATS')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+     <div class="product-image" style="background-image: url('download\ \(2\).jpg');"></div>
+    <div class="product-info">
+      <div class="product-title">REVES SCD JERSEYS ❗🦅</div>
+      <div class="product-price">₦20,000 <del>₦25,000</del> <span class="discount">Up to -20% off</span></div>
+      <button class="button" onclick="addToCart('SACRED SCD RAVERS JERSEYS')">Select options</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-image" style="background-image: url('download\ \(3\).jpg');"></div>
+    <div class="product-info">
+      <div class="product-title">REVES WHITE SHIRT</div>
+      <div class="product-price">₦15,000</div>
+      <button class="button" onclick="addToCart('REVES WHITE SHIRT')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-image" style="background-image: url('download\ \(4\).jpg');"></div>
+    <div class="product-info">
+      <div class="product-title">REVES LONG PANTS</div>
+      <div class="product-price">₦12,000</div>
+      <button class="button" onclick="addToCart('SACRED LONG PANTS')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+
+    <div class="product-image" style="background-image: url('download\ \(5\).jpg');"></div>
+    <div class="product-info">
+      <div class="product-title">REVES TRUCKER HAT</div>
+      <div class="product-price">₦7,500</div>
+      <button class="button" onclick="addToCart('REVES TRUCKER HAT')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-image" style="background-image: url('download.jpg');"></div>
+    <div class="product-info">
+      <div class="product-title">REVES RAGING HOODIE</div>
+      <div class="product-price">₦18,000</div>
+      <button class="button" onclick="addToCart('REVES RAGING HOODIE')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-image" style="background-image: url('images.jpg');"></div>
+    <div class="product-info">
+      <div class="product-title">REVES BAIT SNEAKERS</div>
+      <div class="product-price">₦25,000</div>
+      <button class="button" onclick="addToCart('REVES BAIT SNEAKERS')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+ <div class="product-image" style="background-image: url('images\ \(1\).jpg');"></div>
+    <div class="product-info">
+      <div class="product-title">REVES BACKPACK</div>
+      <div class="product-price">₦14,000</div>
+      <button class="button" onclick="addToCart('REVES BACKPACK')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-image" style="background-image: url('images\ \(2\).jpg');"></div>
+    <div class="product-info">
+      <div class="product-title">REVES SUNGLASSES</div>
+      <div class="product-price">₦5,000</div>
+      <button class="button" onclick="addToCart('REVES SUNGLASSES')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-image" style="background-image: url('images\ \(3\).jpg');"></div>
+    <div class="product-info">
+      <div class="product-title">REVES WATCH</div>
+      <div class="product-price">₦30,000</div>
+      <button class="button" onclick="addToCart('REVES WATCH')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-image" style="background-image: url('images\ \(4\).jpg');"></div>
+
+    <div class="product-info">
+      <div class="product-title">REVES SLOUCHIE</div>
+      <div class="product-price">₦4,000</div>
+      <button class="button" onclick="addToCart('REVES SLOUCHIE')">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="product-card">
+    <div class="product-image" style="background-image: url('download.jpg');"></div>
+    <div class="product-info">
+      <div class="product-title">REVESLET</div>
+      <div class="product-price">₦6,000</div>
+      <button class="button" onclick="addToCart('REVESLET')">Add to Cart</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 reves Shop. All rights reserved.
+</footer>
+
+<script>
+  // Responsive nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  navToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  // Simple add to cart simulation
+  function addToCart(product) {
+    alert(`${product} added to cart!`);
+  }
+   // Load existing cart count
+  window.onload = function() {
+    updateCartCount();
+  }
+  
+</script>
+
+</body>
+</html>

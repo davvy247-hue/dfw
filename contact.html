@@ -1,0 +1,102 @@
+<!-- contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact - Sacred</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <style>
+          body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000000;
+    color: #ffffff;
+  }
+    nav {
+        background: #222;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      nav .logo {
+        font-weight: 900;
+        font-size: 1.5rem;
+        color:  #f44336;
+        letter-spacing: 2px;
+      }
+      nav .menu {
+        display: flex;
+        gap: 1.5rem;
+      }
+      nav .menu a {
+        color: #ddd;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+      nav .menu a:hover {
+        color: #f44336;
+      }
+      /* Responsive nav toggle button */
+      .nav-toggle {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+      .nav-toggle span {
+        background: #f44336;
+        height: 3px;
+        width: 25px;
+        margin-bottom: 4px;
+        border-radius: 2px;
+      }
+      @media (max-width: 768px) {
+        nav .menu {
+          display: none;
+    
+         flex-direction: column;
+          background: #222;
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 200px;
+          padding: 1rem;
+          border-radius: 5px;
+        }
+        nav .menu.active {
+          display: flex;
+        }
+        .nav-toggle {
+          display: flex;
+        }
+      }
+    </style>
+  <nav>
+    <div class="logo">SACRED</div>
+    <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span>
+    </div>
+    <div class="menu" id="navMenu">
+      <a href="home.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <main class="centered">
+    <h1>Contact Us</h1>
+    <p>Email: support@sacredwears.com</p>
+    <p>Instagram: @sacred_scd</p>
+  </main>
+
+  <footer>&copy; 2025 Sacred. All rights reserved.</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+

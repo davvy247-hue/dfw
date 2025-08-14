@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - reves</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #000000;
+    color: #ffffff;
+  }
+  /* Navbar */
+  nav {
+    background: #222;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  nav .logo {
+    font-weight: 900;
+    font-size: 1.5rem;
+    color:  #f44336;
+    letter-spacing: 2px;
+  }
+  nav .menu {
+    display: flex;
+    gap: 1.5rem;
+  }
+  nav .menu a {
+    color: #ddd;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+  nav .menu a:hover {
+    color: #f44336;
+  }
+  /* Responsive nav toggle button */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    background: #f44336;
+    height: 3px;
+    width: 25px;
+    margin-bottom: 4px;
+    border-radius: 2px;
+  }
+  @media (max-width: 768px) {
+    nav .menu {
+      display: none;
+
+     flex-direction: column;
+      background: #222;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      padding: 1rem;
+      border-radius: 5px;
+    }
+    nav .menu.active {
+      display: flex;
+    }
+    .nav-toggle {
+      display: flex;
+    }
+  }
+    .checkout-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      background: #1e1e1e;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(244, 67, 54, 0.3);
+      color: #fff;
+    }
+
+    .checkout-container h2 {
+      margin-bottom: 1rem;
+      color: #f44336;
+    }
+
+    .checkout-container label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    .checkout-container input,
+    .checkout-container textarea {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.3rem;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      background: #2a2a2a;
+      color: white;
+    }
+
+    .account-box {
+      margin: 2rem 0;
+      padding: 1rem;
+      background: #292929;
+      border-left: 5px solid #f44336;
+    }
+
+    .pay-btn {
+      margin-top: 1rem;
+      background: #f44336;border: none;
+      padding: 0.8rem 1.5rem;
+      font-weight: bold;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .status {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">REVES</div>
+  <div class="nav-toggle" id="navToggle">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="menu" id="navMenu">
+    <a href="home.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<main class="checkout-container">
+  <h2>Checkout</h2>
+
+  <label for="name">Full Name</label>
+  <input type="text" id="name" placeholder="John Doe" />
+
+  <label for="email">Email Address</label>
+  <input type="email" id="email" placeholder="you@example.com" />
+
+  <label for="items">Order Summary</label>
+  <textarea id="items" rows="3" placeholder="SACRED HAT × 1, RAVERS JERSEY × 1"></textarea>
+
+  <div class="account-box">
+    <p><strong>Bank Transfer Payment</strong></p>
+    <p>Bank: Opay</p>
+    <p>Account Name: reves wares</p>
+    <p>Account Number: <strong>7046347590</strong></p>
+    <p>Send screenshot to @dfk.david or <a href="wa.me/9137178897">WhatsApp</a></p>
+  </div><button class="pay-btn" onclick="markPaid()">I’ve Paid</button>
+  <div id="status" class="status"></div>
+</main>
+
+<footer>&copy; 2025 reves. All rights reserved.</footer>
+
+<script src="script.js"></script>
+<script>
+  function markPaid() {
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const items = document.getElementById("items").value.trim();
+    const status = document.getElementById("status");
+
+    if (!name || !email || !items) {
+      status.innerText = "Please fill all details before confirming payment.";
+      status.style.color = "orange";
+      return;
+    }
+
+    status.innerText = "Waiting for confirmation...";
+    status.style.color = "#ccc";
+
+    // Simulated confirmation delay
+    setTimeout(() => {
+      status.innerText = "✅ Payment confirmed! Order processing.";
+      status.style.color = "lightgreen";
+    }, 3000);
+  }
+</script>
+
+</body>
+</html>
