@@ -1,192 +1,146 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Cart - REVES</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-      body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #000000;
-    color: #ffffff;
-  }
-  /* Navbar */
-  nav {
-    background: #222;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  nav .logo {
-    font-weight: 900;
-    font-size: 1.5rem;
-    color:  #f44336;
-    letter-spacing: 2px;
-  }
-  nav .menu {
-    display: flex;
-    gap: 1.5rem;
-  }
-  nav .menu a {
-    color: #ddd;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  nav .menu a:hover {
-    color: #f44336;
-  }
-  /* Responsive nav toggle button */
-  .nav-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-  }
-  .nav-toggle span {
-    background: #f44336;
-    height: 3px;
-    width: 25px;
-    margin-bottom: 4px;
-    border-radius: 2px;
-  }
-  @media (max-width: 768px) {
-    nav .menu {
-      display: none;
-
-     flex-direction: column;
-      background: #222;
-      position: absolute;
-      top: 60px;
-      right: 0;
-      width: 200px;
-      padding: 1rem;
-      border-radius: 5px;
+    body {
+      font-family: Arial;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 0;
     }
-    nav .menu.active {
-      display: flex;
-    }
-    .nav-toggle {
-      display: flex;
-    }
-  }
-    /* Add some quick styles for cart page */
     .cart-container {
-      max-width: 700px;
+      max-width: 800px;
       margin: 2rem auto;
-      background: #1e1e1e;
+      background: white;
       padding: 2rem;
       border-radius: 10px;
-      color: white;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
     }
     .cart-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;border-bottom: 1px solid #333;
-      gap: 10px;
+      padding: 1rem 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .qty-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
     .qty-controls button {
-      padding: 3px 8px;
-      background: #444;
+      padding: 4px 8px;
+      background: #333;
       color: white;
       border: none;
       cursor: pointer;
     }
     .remove-btn {
       background: crimson;
-      border: none;
       color: white;
-      padding: 4px 10px;
+      border: none;
+      padding: 5px 10px;
       border-radius: 4px;
-      cursor: pointer;
     }
     .checkout-btn {
-      margin-top: 2rem;
-      background: #f44336;
-      padding: 0.8rem 1.5rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 5px;
+      margin-top: 20px;
+      background: green;
       color: white;
+      padding: 10px 20px;
+      border: none;
       cursor: pointer;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    #total {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .empty {
+      color: #777;
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">REVES</div>
-  <div class="menu">
-    <a href="index.html">Home</a>
-    <a href="shop.html">Shop</a>
-    <a href="cart.html">Cart</a>
-  </div>
-</nav>
+  <main class="cart-container">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <h3 id="total"></h3>
+    <a href="checkout.html"><button class="checkout-btn">Proceed to Checkout</button></a>
+  </main>
 
-<main class="cart-container">
-  <h2>Your Cart</h2>
-  <div id="cart-items"></div>
-  <h3 id="total"></h3>
-  <a href="checkout.html"><button class="checkout-btn">Proceed to Checkout</button></a>
-</main>
-
-<footer>&copy; 2025 Sacred. All rights reserved.</footer>
-
-<script>
-  window.onload = function () {
+  <script>
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const container = document.getElementById("cart-items");
     const totalEl = document.getElementById("total");
 
-    function renderCart() {container.innerHTML = "";
+    function renderCart() {
+      container.innerHTML = "";
       let total = 0;
 
-      if (cart.length === 0) 
+      if (cart.length === 0) {
         container.innerHTML = "<p class='empty'>Your cart is empty.</p>";
-        totalEl.style.display = "none";
+        totalEl.textContent = "";
         return;
-      
-
-      cart.forEach (item, index) => 
-        const row = document.createElement("div");
-        row.classList.add("cart-item");
-        row.innerHTML = `
-          <span>{item.name}</span>
-          <span>₦item.price.toLocaleString()</span>
-          <span class="qty-controls">
-            <button onclick="updateQty({index}, -1)">−</button>
-            item.qty
-            <button onclick="updateQty({index}, 1)">+</button>
-          </span>
-          <span>₦(item.price * item.qty).toLocaleString()</span>
-          <button class="remove-btn" onclick="removeItem({index})">Remove</button>
-        `;
-        container.appendChild(row);
-        total += item.price * item.qty;
-      };
-
-      totalEl.innerText = Total: ${total.toLocaleString()};
-      totalEl.style.display = "block";
-      localStorage.setItem("cart", JSON.stringify(cart));
-    }
-
-    window.updateQty = function (index, change) {
-      cart[index].qty += change;
-      if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
       }
-      renderCart();
-    }window.removeItem = function (index) {
-      cart.splice(index, 1);
-      renderCart();
+
+      cart.forEach((item, i) => {
+        const div = document.createElement("div");
+        div.className = "cart-item";
+        div.innerHTML = `
+          <span>${item.name}</span>
+          <div class="qty-controls">
+      cursor: pointer;
+      <button onclick="changeQty({i}, -1)">-</button>
+            <span>item.qty</span>
+            <button onclick="changeQty({i}, 1)">+</button>
+          </div>
+          <span>₦item.price * item.qty</span>
+          <button class="remove-btn" onclick="removeItem({i})">x</button>
+        `;
+        container.appendChild(div);
+        total += item.price * item.qty;
+      });
+
+      totalEl.textContent = "Total: ₦" + total.toLocaleString();
     }
 
-    renderCart();
-  ;
-</script>
+    function changeQty(index, delta) {
+      cart[index].qty += delta;
+      if (cart[index].qty < 1) cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
 
+    function removeItem(index) {
+      cart.splice(index, 1);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+      updateCartCount();
+    }
+
+    function updateCartCount() {
+      const badge = document.getElementById("cart-badge");
+      if (!badge) return;
+      const count = cart.reduce((sum, item) => sum + item.qty, 0);
+      badge.textContent = count;
+    }
+
+    window.onload = function () {
+      renderCart();
+      updateCartCount();
+    };
+  </script>
 </body>
-</html>
+</html>.
+      
