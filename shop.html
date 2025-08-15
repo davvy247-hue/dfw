@@ -75,21 +75,20 @@
     .nav-toggle {
       display: flex;
     }
-    .floating-cart {
+    .cart-float {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background: #f44336;
+  background: crimson;
   color: white;
-  padding: 10px 16px;
+  padding: 10px 15px;
   border-radius: 50px;
   text-decoration: none;
-  font-size: 16px;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  gap: 6px;
+  font-size: 18px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  z-index: 999;
 }
+
 #cart-badge {
   background: white;
   color: #f44336;
@@ -173,8 +172,10 @@
   }
 </style>
 </head>
-<body>
-
+<body
+  <a href="cart.html" class="cart-float">
+  🛒 <span id="cart-count">0</span>
+</a>
 <nav>
   <div class="logo">REVES</div>
   <div class="nav-toggle" id="navToggle">
