@@ -46,7 +46,8 @@
     color: #f44336;
   }
   /* Responsive nav toggle button */
-  .nav-toggle {
+  .nav-toggl
+  e {
     display: none;
     flex-direction: column;
     cursor: pointer;
@@ -88,10 +89,7 @@
   text-decoration: none;
   font-size: 18px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  z-index:9999;
-  display:flex;
-  align-items:center;
-  justify-content:center;    
+  z-index:999;  
 }
 
 #cart-badge {
@@ -189,6 +187,7 @@
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
     <a href="contact.html">Contact</a>
+    <a href="about.html">Contact</a>
   </div>
 </nav> 
 <main class="product-grid">
@@ -324,8 +323,11 @@ function addToCart(product) {
   // Update count when page loads
   window.onload = updateCartCount;
 </script>
-        <a href="cart.html" class="cart-float">
+  <a href="cart.html" class="cart-float">
   🛒 <span id="cart-count">0</span>
 </a>
 </body>
 </html>
+
+
+
