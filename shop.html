@@ -75,7 +75,28 @@
     .nav-toggle {
       display: flex;
     }
-  }
+    .floating-cart {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #f44336;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-size: 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#cart-badge {
+  background: white;
+  color: #f44336;
+  border-radius: 50%;
+  padding: 2px 8px;
+  font-weight: bold;
+}
   /* Product grid */
   main.product-grid {
     max-width: 1200px;
@@ -287,6 +308,12 @@
 </footer>
 
 <script>
+function updateCartCount() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  const badge = document.getElementById('cart-badge');
+  if (badge) badge.textContent = count;
+}
   // Responsive nav toggle
   const navToggle = document.getElementById('navToggle');
   const navMenu = document.getElementById('navMenu');
@@ -294,7 +321,7 @@
     navMenu.classList.toggle('active');
   });
 
-  // Simple add to cart simulation
+
   function addToCart(product) {
     alert(`${product} added to cart!`);
   }
