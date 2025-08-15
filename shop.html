@@ -163,7 +163,7 @@
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
     <a href="contact.html">Contact</a>
-    <a href="about.html">About</a>
+    <a href="about.html">Cart</a>
   </div>
 </nav> 
 <main class="product-grid">
@@ -284,6 +284,7 @@
 </footer>
 
 <script>
+// Mobile menu toggle
   const menuToggle = document.getElementById('menu-toggle');
   const navMenu = document.getElementById('nav-menu');
 
@@ -295,20 +296,6 @@
   function addToCart(productName) {
     alert(productName + " added to cart!");
   }
-function addToCart(product) {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    cart.push(product);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    updateCartCount();
-  }
-
-  function updateCartCount() {
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    document.getElementById("cart-count").textContent = cart.length;
-  }
-
-  // Update count when page loads
-  window.onload = updateCartCount;
 </script>
 </body>
 </html>
