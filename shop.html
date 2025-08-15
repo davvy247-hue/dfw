@@ -284,6 +284,17 @@
 </footer>
 
 <script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navMenu = document.getElementById('nav-menu');
+
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+  });
+
+  // Simple add-to-cart function
+  function addToCart(productName) {
+    alert(productName + " added to cart!");
+  }
 function addToCart(product) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     cart.push(product);
