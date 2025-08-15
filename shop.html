@@ -186,9 +186,6 @@
     <a href="contact.html">Contact</a>
   </div>
 </nav> 
-      <a href="cart.html" class="cart-float">
-  🛒 <span id="cart-count">0</span>
-</a>
 <main class="product-grid">
   <!-- Product cards (12) -->
   <div class="product-card">
@@ -307,29 +304,23 @@
 </footer>
 
 <script>
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  const count = cart.reduce((sum, item) => sum + item.qty, 0);
-  const badge = document.getElementById('cart-badge');
-  if (badge) badge.textContent = count;
-}
-  // Responsive nav toggle
-  const navToggle = document.getElementById('navToggle');
-  const navMenu = document.getElementById('navMenu');
-  navToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-
-
-  function addToCart(product) {
-    alert(`${product} added to cart!`);
-  }
-   // Load existing cart count
-  window.onload = function() {
+function addToCart(product) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
     updateCartCount();
   }
-  
-</script>
 
+  function updateCartCount() {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    document.getElementById("cart-count").textContent = cart.length;
+  }
+
+  // Update count when page loads
+  window.onload = updateCartCount;
+</script>
+        <a href="cart.html" class="cart-float">
+  🛒 <span id="cart-count">0</span>
+</a>
 </body>
 </html>
